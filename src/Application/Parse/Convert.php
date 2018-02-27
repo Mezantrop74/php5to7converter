@@ -42,7 +42,6 @@ class Convert
 
         // pull contents of file into an array
         $contents = file($filename);
-        echo 'Processing: ' . $filename . PHP_EOL;
 
         // new function added in PHP 7
         $result = preg_replace_callback_array(
@@ -87,7 +86,8 @@ class Convert
                 '!(.*?)\\\u\{!' =>
                     function ($match) {
                         return '// WARNING: \\u{xxx} is now considered unicode escape syntax' . PHP_EOL
-                            . '// see: http://php.net/manual/en/migration70.new-features.php#migration70.new-features.unicode-codepoint-escape-syntax' . PHP_EOL
+                            . '// see: http://php.net/manual/en/migration70.new-features.php#migration70.new-features.unicode-codepoint-escape-syntax'
+                            . PHP_EOL
                             . $match[0];
                     },
 
